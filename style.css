@@ -1,0 +1,655 @@
+:root {
+    --primary: #804FFF;
+    --primary-light: #9d75ff;
+    --secondary: #00f2ff;
+    --bg: #171A2D;
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-green: #00ff88;
+    --pixel-font: 'Press Start 2P', cursive;
+    --star-color: #5C5422;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Spoqa Han Sans Neo', 'Outfit', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Pixel Space Background - Solid color as requested */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.016'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Starfield with box-shadow */
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.stars {
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    box-shadow:
+        15vw 15vh var(--star-color), 40vw 25vh var(--star-color), 70vw 10vh var(--star-color), 85vw 40vh var(--star-color),
+        25vw 60vh var(--star-color), 55vw 80vh var(--star-color), 10vw 90vh var(--star-color);
+}
+
+.stars2 {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    box-shadow:
+        5vw 45vh var(--star-color), 30vw 75vh var(--star-color), 60vw 15vh var(--star-color),
+        95vw 85vh var(--star-color), 50vw 35vh var(--star-color);
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+}
+
+.pixel-text {
+    font-family: var(--pixel-font);
+    font-size: 0.8rem;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+.pixel-brand {
+    font-family: var(--pixel-font);
+    color: #C9CCE7;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Hero Section */
+.hero {
+    padding: 100px 0 120px;
+    text-align: center;
+}
+
+.hero-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.hero-logo {
+    margin-bottom: 1rem;
+}
+
+.hero-logo-img {
+    width: 95px;
+    height: 95px;
+    image-rendering: auto;
+    object-fit: contain;
+}
+
+.hero-logo p {
+    color: #C9CCE7;
+    font-size: 16px;
+    margin-top: 8px;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 64px;
+    margin-bottom: 28px;
+}
+
+.gradient-text {
+    color: #FFFFFF;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #A3A8C4;
+    margin: 0 auto 3rem;
+    max-width: 600px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.cta-primary {
+    width: 200px;
+    height: 72px;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-primary:hover {
+    background: var(--primary-light);
+}
+
+/* Button "pressed" effect removed as requested */
+
+.hero-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.hero-image img {
+    width: 880px;
+    height: 440px;
+    object-fit: cover;
+    border-radius: 20px;
+    image-rendering: auto;
+}
+
+/* Tutorial Section (New) */
+.tutorial {
+    padding: 80px 0;
+    background: #252945;
+    border-radius: 12px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 72px;
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+.tutorial-desc {
+    text-align: center;
+    font-size: 14px;
+    color: #A2A9D0;
+    margin-top: -60px;
+    margin-bottom: 70px;
+    /* Increased by 20px */
+    line-height: 1.6;
+    opacity: 0.7;
+}
+
+.tutorial-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.tutorial-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+    /* Added vertical gap */
+}
+
+.tutorial-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1.5rem 48px;
+    background: #373C5A;
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: default;
+    width: 432px;
+    height: 360px;
+    justify-content: flex-start;
+}
+
+.step-icon {
+    width: 100%;
+    height: 120px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.step-icon img {
+    max-width: 33.33%;
+    height: auto;
+    transition: all 0.4s ease;
+}
+
+/* w3, w4 Scale up */
+.scale-up-icon {
+    max-width: 50% !important;
+    /* ~1.5x of 33.33% */
+}
+
+/* Animations for icons */
+.tutorial-card:hover .arrow-icon {
+    animation: arrowMove 0.8s ease-in-out infinite;
+}
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(15px);
+        opacity: 0.5;
+    }
+
+    51% {
+        transform: translateX(-15px);
+        opacity: 0;
+    }
+}
+
+.tutorial-card:hover .rotate-icon {
+    transform: rotate(360deg);
+}
+
+/* Scale-up icon hover animations removed as requested */
+
+.step-content h3 {
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    font-size: 20px;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
+.step-content p {
+    color: #A3A8C4;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Removed height for swap as p is now static */
+}
+
+/* Icon Overlays */
+.icon-overlay {
+    position: absolute;
+    background: #373C5A;
+    /* Match card bg */
+    color: #FFFFFF;
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.w3-overlay {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.w4-overlay {
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tutorial-card:hover .icon-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Review Section */
+.review {
+    padding: 130px 0 100px;
+    text-align: center;
+    overflow: visible;
+    background-color: #171A2D;
+    /* Solid background to hide stars */
+    position: relative;
+    z-index: 1;
+}
+
+.review .container {
+    max-width: none;
+    width: 100%;
+}
+
+.review .cta-box {
+    overflow: visible;
+    padding: 0;
+}
+
+.review img,
+.review .cta-box img.scale-up-icon {
+    width: 1120px !important;
+    max-width: none !important;
+    margin: 0 auto;
+    display: block;
+    transform: translateX(20px);
+}
+
+/* Features Styling */
+.features {
+    padding: 0 0 50px 0;
+    /* Reduced by half (100px -> 50px) */
+    margin-top: 80px;
+}
+
+.features .container {
+    max-width: 1400px;
+    /* Allow room for 1300px image */
+    text-align: center;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.feature-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.feature-image img {
+    width: 1200px;
+    height: auto;
+    object-fit: contain;
+    max-width: none;
+    display: block;
+    margin: 0 auto;
+    transform: translateX(-80px);
+    /* Moved 30px further to the left from -50px to -80px */
+}
+
+/* Final CTA */
+.cta-final {
+    padding: 0 0 100px;
+    background-color: #171A2D;
+    /* Solid background to hide stars */
+    position: relative;
+    z-index: 1;
+}
+
+.cta-box {
+    padding: 4rem;
+    text-align: center;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+.cta-box h2 {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.cta-box p {
+    color: #A3A8C4;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 3rem;
+}
+
+.cta-box .scale-up-icon {
+    max-width: 13.33% !important;
+    /* ~1/3 of previous 40-50% range or ~1/3 of card width */
+    height: auto;
+}
+
+/* START GAME pseudo-element removed */
+
+footer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--glass-border);
+    background: var(--bg);
+    /* Ensure background for rounded corners */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.copyright {
+    margin-left: 100px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-right: 100px;
+}
+
+/* Extra Reveal Section */
+.extra-reveal {
+    height: 480px;
+    background: #2F3453;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 20px;
+    /* Slight gap from footer if needed */
+}
+
+.extra-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hey-img {
+    width: 500px;
+    height: auto;
+    display: block;
+}
+
+/* Comprehensive Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .feature-image img {
+        width: 100%;
+        max-width: 1000px;
+        transform: translateX(0);
+        /* Remove offset on smaller screens */
+    }
+
+    .review img,
+    .review .cta-box img.scale-up-icon {
+        width: 90% !important;
+        transform: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .tutorial-card {
+        width: 48%;
+        /* 2 cards per row approx if using flex-wrap, but we have separate rows */
+    }
+
+    .tutorial-row {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .section-title {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tutorial {
+        padding: 60px 20px;
+    }
+
+    .tutorial-desc {
+        margin-top: -30px;
+        margin-bottom: 40px;
+    }
+
+    .tutorial-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tutorial-card {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        padding-bottom: 40px;
+    }
+
+    .cta-box h2 {
+        font-size: 32px;
+        line-height: 44px;
+    }
+
+    .cta-box p {
+        font-size: 16px;
+    }
+
+    /* Footer Responsive */
+    .footer-content {
+        flex-direction: column;
+        height: auto;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    .copyright {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .footer-links {
+        margin-right: 0;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer {
+        height: auto;
+    }
+
+    .extra-reveal {
+        height: 300px;
+    }
+
+    .hey-img {
+        width: 80%;
+    }
+
+    .qr-img {
+        width: 100px !important;
+    }
+}
+
+/* Fix horizontal scroll issue */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
